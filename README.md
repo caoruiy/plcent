@@ -51,3 +51,4 @@
 > [http://localhost:3000](http://localhost:3000)
 
 
+4. 服务器上，字需要把 `dist` 目录设置成站点根目录即可
