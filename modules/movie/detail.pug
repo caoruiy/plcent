@@ -1,0 +1,52 @@
+.movie-info.col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-sm-12.col-xs-12
+  //- 关闭按钮
+  button(type="button" class="close" ng-click="goToMovie()")
+    span(aria-hidden="true") &times;
+  //- 详情
+  .row
+    .col-md-8.col-lg-8.col-sm-12.col-xs-12
+      .movie-info-img
+        img(ng-src="{{movie.detail.images.large}}")
+      .movie-info-text
+        h3(alt="{{movie.detail.original_title}}") {{movie.detail.title}} 
+          span [{{movie.detail.year}}]
+          a(href="{{movie.detail.alt}}" target="_blank")
+            i(class="glyphicon glyphicon-link")
+        .movie-main-info 
+          | 导演：
+          a(ng-repeat="director in movie.detail.directors" href="{{director.alt}}" target="_blank") {{director.name}} 
+        .movie-main-info
+          div
+            | 主演：
+            a(ng-repeat="cast in movie.detail.casts" href="{{cast.alt}}" target="_blank")   {{cast.name}} 
+          div
+            | 制片国家/地区:
+            span(ng-repeat="country in movie.detail.countries") {{country}} 
+          div
+            | 类型:
+            span(ng-repeat="genre in movie.detail.genres") {{genre}} 
+          div
+            | 又名：
+            span(ng-repeat="alias in movie.detail.aka") [{{alias}}]&nbsp;
+    .col-md-4.col-lg-4.col-sm-12.col-xs-12.movie-info-right
+      .movie-rate  豆瓣评分
+      .movie-rate-numb {{movie.detail.rating.average}}
+      .movie-rate-numb-sub {{movie.detail.ratings_count}}人评分
+      .movie-rate-numb-sub {{movie.detail.wish_count}}人想看
+      .movie-rate-numb-sub {{movie.detail.collect_count}}人已经看过
+  h4.movie-info-title 剧情简介
+  .movie-detail-summary {{movie.detail.summary}}
+  h4.movie-info-title 主要电影人
+  .row.movie-figure-wrapper
+    .movie-figure(ng-repeat="director in movie.detail.directors.slice(0,2)")
+      img.movie-figure-img(ng-src="{{director.avatars.medium}}")
+      .movie-figure-info
+        span 导演&nbsp;
+        span 
+          a(href="{{director.alt}}" target="_blank") {{director.name}}
+    .movie-figure(ng-repeat="cast in movie.detail.casts.slice(0,4)")
+      img.movie-figure-img(ng-src="{{cast.avatars.medium}}")
+      .movie-figure-info
+        span 主演&nbsp;
+        span 
+          a(href="{{cast.alt}}" target="_blank") {{cast.name}}

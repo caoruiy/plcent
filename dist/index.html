@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="plcent">
+  <head>
+    <title>非典型性程序员</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="caoruiy@plcent.com">
+    <meta name="description" content="专属你自己的导航站点，信息汇集平台">
+    <meta name="keywords" content="个人导航,导航,信息,汇集,平台,豆瓣">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta rel="icon" href="./images/www.plcent.com_logo_100x100-192x192.png" sizes="32x32">
+    <meta rel="icon" href="./images/www.plcent.com_logo_100x100-192x192.png" sizes="192x192"><link rel="stylesheet" href="./css/public.css"/>
+  </head>
+  <body ng-controller="mainCtrl">
+    <div class="container-fluid">
+      <div class="site-nav-wrapper row">
+        <div class="site-nav col-lg-8 col-md-8 col-sm-12 col-sx-12 col-lg-offset-2 col-md-offset-2">
+          <h3 class="site-nav-title"><i class="glyphicon glyphicon-grain"></i>Plcent</h3>
+          <nav>
+            <ul class="site-nav-menu">
+              <li ui-sref-active="active"><a ui-sref="index" translate="Home"></a></li>
+              <li ui-sref-active="active"><a ui-sref="movie" translate="Movie"></a></li>
+              <li><a href="https://blog.plcent.com" target="_block" translate="Blog"></a></li>
+              <li><a href="https://github.com/caoruiy" target="_block" translate="GitHub"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="site-container-wrapper row" ui-view="main">
+        <loading></loading>
+      </div>
+      <div class="site-footer-wrapper row">
+        <div class="site-footer col-lg-8 col-md-8 col-sm-12 col-sx-12 col-lg-offset-2 col-md-offset-2">
+          <p> <span class="site-owner" translate="caoruiy's personal site"></span>&nbsp;&nbsp;<a href="mailto:caoruiy@plcent.com">@caoruiy@plcent.com</a>|&nbsp;&nbsp;<span translate="Language"></span>&nbsp;:&nbsp;&nbsp;<span class="language" ng-click="changeLanguage('zh-cn')" ng-class="  {'active':locLanguage=='zh-cn'}">中文</span>&nbsp;&nbsp;<span class="language" ng-click="changeLanguage('en-us')" ng-class="  {'active':locLanguage=='en-us'}">English  </span></p>
+        </div>
+      </div>
+    </div><script src="./js/public.js"></script><script src="./js/app.js"></script>
+<script src="./js/public.js"></script><script src="./js/app.js"></script>
+  </body>
+</html>

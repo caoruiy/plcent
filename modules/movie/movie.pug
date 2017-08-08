@@ -1,0 +1,67 @@
+.site-content
+  .background
+    .background-menu
+  .module-movie
+    .module-content
+      uib-tabset(active="0")
+        uib-tab(index="0" heading="正在热映" select="inTheatersFun(1)")
+          .row
+            .moview-list-title.hidden-xs 正在热映
+            .movie-list-wrapper.col-md-3.clo-lg-3.clo-sm-6.clo-xs-12(ng-repeat="movie in inTheaters")
+              .movie-list(pop-show ng-click="showDetail(movie.id)")
+                img(ng-src="{{movie.images.large}}")
+                .movie-info
+                  div {{movie.title}} 
+                    span(class="movie-average" ng-show="movie.rating.average!=0") {{movie.rating.average}}’
+                  div(class="movie-info-d")
+                    span(ng-repeat="genres in movie.genres") {{genres}}&nbsp;&nbsp;
+                  div(class="movie-info-d")
+                    | 主演：
+                    span(ng-repeat="cast in movie.casts") {{cast.name}}&nbsp;&nbsp;
+        uib-tab(index="1" heading="即将上映" select="commingSoonFun(1)")
+          .row
+            .moview-list-title.hidden-xs 即将上映
+            .movie-list-wrapper.col-md-3.clo-lg-3.clo-sm-6.clo-xs-12(ng-repeat="movie in comingSoon")
+              .movie-list(pop-show ng-click="showDetail(movie.id)")
+                img(ng-src="{{movie.images.large}}")
+                .movie-info
+                  div {{movie.title}} 
+                    span(class="movie-average" ng-show="movie.rating.average!=0") {{movie.rating.average}}’
+                  div(class="movie-info-d")
+                    span(ng-repeat="genres in movie.genres") {{genres}}&nbsp;&nbsp;
+                  div(class="movie-info-d")
+                    | 主演：
+                    span(ng-repeat="cast in movie.casts") {{cast.name}}&nbsp;&nbsp;
+        uib-tab(index="2" heading="Top250" select="top250Fun(1)")
+          .row
+            .moview-list-title.hidden-xs Top250
+            .movie-list-wrapper.col-md-3.clo-lg-3.clo-sm-6.clo-xs-12(ng-repeat="movie in top250")
+              .movie-list(pop-show ng-click="showDetail(movie.id)")
+                img(ng-src="{{movie.images.large}}")
+                .movie-info
+                  div {{movie.title}} 
+                    span(class="movie-average" ng-show="movie.rating.average!=0") {{movie.rating.average}}’
+                  div(class="movie-info-d")
+                    span(ng-repeat="genres in movie.genres") {{genres}}&nbsp;&nbsp;
+                  div(class="movie-info-d")
+                    | 主演：
+                    span(ng-repeat="cast in movie.casts") {{cast.name}}&nbsp;&nbsp;
+      ul(
+      uib-pagination 
+      boundary-links="true" 
+      boundary-link-numbers = "true" 
+      rotate = "true" 
+      force-ellipses = "true"
+      max-size = "4" 
+      total-items="pageOption.totalItems" 
+      items-per-page="pageOption.itemsPerPage" 
+      ng-model="pageOption.currentPage" 
+      class="pagination-sm" 
+      previous-text="<" 
+      next-text=">" 
+      first-text="<<" 
+      last-text=">>" 
+      ng-change = "changeThePage()" 
+      )
+    //- 电影详情页面
+    .movie-detail(ui-view="detail")

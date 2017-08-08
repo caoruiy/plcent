@@ -1,0 +1,35 @@
+extends layout
+block banner
+  .site-nav-wrapper.row
+    .site-nav.col-lg-8.col-md-8.col-sm-12.col-sx-12.col-lg-offset-2.col-md-offset-2
+      h3.site-nav-title
+        i(class="glyphicon glyphicon-grain")
+        | Plcent
+      nav
+        ul.site-nav-menu
+          li(ui-sref-active="active")
+            a(ui-sref="index" translate="Home")
+          li(ui-sref-active="active")
+            a(ui-sref="movie" translate="Movie")
+          li
+            a(href='https://blog.plcent.com' target="_block" translate="Blog")
+          li
+            a(href='https://github.com/caoruiy' target="_block" translate="GitHub")
+          
+block content
+  .site-container-wrapper.row(ui-view="main")
+    loading
+block footer
+  .site-footer-wrapper.row
+    .site-footer.col-lg-8.col-md-8.col-sm-12.col-sx-12.col-lg-offset-2.col-md-offset-2
+      p
+        | 
+        span(translate="caoruiy's personal site" class="site-owner")
+        | &nbsp;&nbsp;
+        a(href='mailto:caoruiy@plcent.com') @caoruiy@plcent.com
+        | |&nbsp;&nbsp;
+        span(translate="Language")
+        | &nbsp;:&nbsp;&nbsp;
+        span(ng-click="changeLanguage('zh-cn')" class="language" ng-class="  {'active':locLanguage=='zh-cn'}") 中文
+        | &nbsp;&nbsp;
+        span(ng-click="changeLanguage('en-us')" class="language" ng-class="  {'active':locLanguage=='en-us'}") English  

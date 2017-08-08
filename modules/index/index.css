@@ -1,0 +1,37 @@
+.site-content{
+	color: #FFF;
+	text-align: center;
+}
+.module-index{
+	background: transparent;
+	padding-bottom: 250px;
+
+}
+.site-content .index-title{
+	font-family: fantasy;
+	font-weight: bold;
+	padding-top: 150px;
+	font-size: 45px;
+}
+.site-content .btn-main{
+	padding: 10px 20px;
+	font-weight: bold;
+	width: 50%;
+	max-width: 300px;
+	border-radius: 0;
+	background: #059ae4;
+	color: #FFF;
+	border: 0px;
+}
+@media(max-width: 768px){
+	.site-content .title{
+		padding-top: 100px;
+		font-size: 26px;
+	}
+	.site-content .lead{
+		font-size: 14px;
+	}
+	.module-index {
+	    padding-bottom: 30px;
+	}
+}

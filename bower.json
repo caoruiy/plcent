@@ -1,0 +1,28 @@
+{
+  "name": "www.plcent.com",
+  "description": "",
+  "main": "",
+  "authors": [
+    "caorui_int <caoruiy@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "1.6",
+    "angular-ui-router": "^1.0.5",
+    "angular-bootstrap": "^2.5.0",
+    "normalize-css": "^7.0.0",
+    "oclazyload": "ocLazyLoad#^1.1.0",
+    "angular-translate": "^2.15.2",
+    "angular-translate-loader-static-files": "^2.15.2",
+    "angular-animate": "^1.6.5"
+  }
+}

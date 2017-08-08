@@ -1,0 +1,34 @@
+{
+  "name": "www.plcent.com",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "bowerInstall": "bower install",
+    "init": "npm install; npm install bower -g; npm run bowerInstall;",
+    "start": "./node_modules/supervisor/lib/cli-wrapper.js ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.8",
+    "express": "~4.15.2",
+    "jade": "~1.11.0",
+    "morgan": "^1.8.2",
+    "pug": "^2.0.0-rc.2",
+    "serve-favicon": "^2.4.3"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^8.0.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-usemin": "^0.3.28",
+    "supervisor": "^0.12.0"
+  }
+}
