@@ -28,12 +28,11 @@ gulp.task('portal', function(cb){
 	gulp.src('./views/index.pug')
 	.pipe(pug({pretty:true}))
 	.pipe(usemin({
-		css : [minify()],
+		css : [minify(),replace('/public/images','/images')],
 		js : [uglify()]
 	}))
 	.pipe(replace(/\.\.\/modules\/(\w*?)\/(\w*?\.(js|css))/g,'./$3/$2')) // 修改引用模块内的css和js
 	.pipe(replace(/\/tpl\/(\w*)\/(\w*)(?="|')/g,'./tpl/$2.html'))
-	.pipe(replace('/public/images','./images')) // 修改对公共资源的应用
 	.pipe(replace('../public/stylesheets','./css'))
 	.pipe(replace('../public/javascripts','./js'))
 	.pipe(gulp.dest('./dist'))
