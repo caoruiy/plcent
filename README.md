@@ -17,7 +17,7 @@
 8. bootstrap			样式库
 
 ### 目录结构
-
+```
 ╔ bin
 ╠ bower_components
 ╠ dist 				打包好的项目
@@ -33,17 +33,20 @@
 ╠ gulpfile.js 		自动化构建
 ╠ package.json 		
 ╚ README.md
-
+```
 > 上述目录结构是使用express自动生成的目录结构，也是要express本地起的服务来开发项目
 >
 > 最后把 `views` 下，`public` 下以及 `modules` 下的文件打包到dist目录下
 
 ### 访问
 > cd ./projectDir
+
 1. 安装依赖
 > npm run init
+
 2. 起服务
 > npm start
+
 3.访问
 > [http://localhost:3000](http://localhost:3000)
 
