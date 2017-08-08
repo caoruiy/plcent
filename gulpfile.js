@@ -33,7 +33,7 @@ gulp.task('portal', function(cb){
 	}))
 	.pipe(replace(/\.\.\/modules\/(\w*?)\/(\w*?\.(js|css))/g,'./$3/$2')) // 修改引用模块内的css和js
 	.pipe(replace(/\/tpl\/(\w*)\/(\w*)(?="|')/g,'./tpl/$2.html'))
-	.pipe(replace('../public/images','./images')) // 修改对公共资源的应用
+	.pipe(replace('/public/images','./images')) // 修改对公共资源的应用
 	.pipe(replace('../public/stylesheets','./css'))
 	.pipe(replace('../public/javascripts','./js'))
 	.pipe(gulp.dest('./dist'))
@@ -63,6 +63,9 @@ gulp.task('fonts', function(cb){
 gulp.task('images', function(cb){
 	gulp.src('./public/images/*.*')
 	.pipe(gulp.dest('./dist/images/'));
+
+	gulp.src('./favicon.ico')
+	.pipe(gulp.dest('./dist/'));
 	cb();
 })
 
