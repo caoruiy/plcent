@@ -49,7 +49,9 @@ var cdnConfig = {
 	]
 };
 // 默认
-gulp.task('default',['images','fonts','modules','after:portal']);
+gulp.task('default',['buildAfter','last']);
+gulp.task('build',['portal','debug']);
+gulp.task('buildAfter',['build'])
 
 // 清除
 gulp.task('clean',function(cb){
@@ -61,7 +63,7 @@ gulp.task('clean',function(cb){
 		],cb);
 })
 // task portal
-gulp.task('portal', function(cb){
+gulp.task('portal',['images','fonts','modules'], function(cb){
 	// index.html
 	gulp.src('./views/index.pug')
 	.pipe(pug({pretty:true}))
@@ -79,13 +81,20 @@ gulp.task('portal', function(cb){
 
 });
 
-gulp.task('after:portal',['portal'], function(cb){
-	gulp.src(['./public/javascripts/debug.js', './public/javascripts/app.js'])
-	.pipe(concat('app.js'))
-	.pipe(rename('app.js'))
-	.pipe(uglify())
+gulp.task('debug', function(cb){
+	gulp.src(['./public/javascripts/debug.js'])
 	.pipe(gulp.dest('./dist/js'))
 	cb();
+})
+
+gulp.task('last', function(cb){
+	setTimeout(function(){
+		gulp.src(['./dist/js/debug.js', './dist/js/app.js'])
+		.pipe(concat('app.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('./dist/js'))
+		cb();
+	},1000)
 })
 
 gulp.task('app', function(cb){
@@ -115,34 +124,6 @@ gulp.task('images', function(cb){
 	.pipe(gulp.dest('./dist/'));
 	cb();
 })
-
-// // 通用JS
-// gulp.task('bower', function(){
-// 	var jsFilter = filterByExtension('js'),
-// 	cssFilter = filterByExtension('css');
-// 	gulp.src(mainBowerFiles(),{base: './bower_components'})
-// 	.pipe(rename({dirname:''}))
-// 	.pipe(gulp.dest('./dist/libs'))
-// 	.pipe(rename({suffix: '.min'}))
-// 	.pipe(cssFilter)
-// 	.pipe(minify())
-// 	.pipe(gulp.dest('./dist/libs'))
-// 	.pipe(jsFilter)
-// 	.pipe(uglify())
-// 	.pipe(gulp.dest('./dist/libs'));
-// });
-	// gulp.src([
-	// 	'bower_components/angular/angular.min.js',
-	// 	'bower_components/angular/angular.min.js',
-	// 	'bower_components/angular-animate/angular-animate.min.js',
-	// 	])
-	// // 匹配形如	: ../modules/dirname/filename.js  或者	: ../modules/dirname/filename.css
-	// // 替换成		: ./js/filename.js 或者		: ./css/filname.css
-	// .pipe(concat('app.js'))
-	// .pipe(replace(/\.\.\/modules\/(.*)\/(.*?\.(js|css))/g,'./$3/$2'))
-	// .pipe(uglify())
-	// .pipe(gulp.dest('./dist/js/'))
-// })
 
 // 各个模块
 gulp.task('modules', function(cb){
@@ -175,3 +156,32 @@ gulp.task('modules', function(cb){
 	.pipe(gulp.dest('./dist/tpl/'))
 	cb();
 })
+
+// // 通用JS
+// gulp.task('bower', function(){
+// 	var jsFilter = filterByExtension('js'),
+// 	cssFilter = filterByExtension('css');
+// 	gulp.src(mainBowerFiles(),{base: './bower_components'})
+// 	.pipe(rename({dirname:''}))
+// 	.pipe(gulp.dest('./dist/libs'))
+// 	.pipe(rename({suffix: '.min'}))
+// 	.pipe(cssFilter)
+// 	.pipe(minify())
+// 	.pipe(gulp.dest('./dist/libs'))
+// 	.pipe(jsFilter)
+// 	.pipe(uglify())
+// 	.pipe(gulp.dest('./dist/libs'));
+// });
+	// gulp.src([
+	// 	'bower_components/angular/angular.min.js',
+	// 	'bower_components/angular/angular.min.js',
+	// 	'bower_components/angular-animate/angular-animate.min.js',
+	// 	])
+	// // 匹配形如	: ../modules/dirname/filename.js  或者	: ../modules/dirname/filename.css
+	// // 替换成		: ./js/filename.js 或者		: ./css/filname.css
+	// .pipe(concat('app.js'))
+	// .pipe(replace(/\.\.\/modules\/(.*)\/(.*?\.(js|css))/g,'./$3/$2'))
+	// .pipe(uglify())
+	// .pipe(gulp.dest('./dist/js/'))
+// })
+

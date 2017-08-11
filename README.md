@@ -38,6 +38,9 @@
 >
 > 最后把 `views` 下，`public` 下以及 `modules` 下的文件打包到dist目录下
 
+### something
+1. 上线打包使用cdn代替本地访问
+
 ### 访问
 > cd ./projectDir
 
