@@ -78,25 +78,23 @@ gulp.task('portal', function(cb){
 	cb();
 
 });
-gulp.task('debug', function(cb){
-	gulp.src('./public/javascripts/debug.js')
-	.pipe(gulp.dest('./dist/js'));
-	cb();
-})
 
-gulp.task('after:portal',['debug','portal'], function(cb){
-	gulp.src(['./dist/js/debug.js', './dist/js/app.js'])
+gulp.task('after:portal',['portal'], function(cb){
+	gulp.src(['./public/javascripts/debug.js', './public/javascripts/app.js'])
 	.pipe(concat('app.js'))
 	.pipe(rename('app.js'))
-	.pipe(gulp.dest('./dist/js'));
+	.pipe(uglify())
+	.pipe(gulp.dest('./dist/js'))
 	cb();
 })
 
 gulp.task('app', function(cb){
-	gulp.src(['./dist/js/debug.js', './dist/js/app.js'])
+	gulp.src(['./public/javascripts/debug.js', './public/javascripts/app.js'])
 	.pipe(concat('app.js'))
-	.pipe(rename('a.js'))
-	.pipe(gulp.dest('./dist/js'));
+	.pipe(rename('app.back.js'))
+	.pipe(gulp.dest('./dist/js'))
+	.pipe(rename('app.js'))
+	.pipe(gulp.dest('./dist/js'))
 	cb();
 })
 
