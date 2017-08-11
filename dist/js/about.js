@@ -1,0 +1,1 @@
+app.controller("aboutmeController",["$scope",function(o){this.name="caoruiy"}]);

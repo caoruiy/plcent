@@ -35,3 +35,9 @@
 	    padding-bottom: 30px;
 	}
 }
+@media(max-width: 360px){
+	.site-content .index-title{
+		font-size: 24px;
+		padding-top: 100px;
+	}
+}

@@ -8,10 +8,48 @@ var rename = require('gulp-rename');
 var del = require('del');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
+var cdn = require('gulp-cdnizer');
+var mainBowerFiles = require("main-bower-files");
+var  filter = require('gulp-filter');
 
+// 过滤文件
+var filterByExtension = function(extension) {
+	return filter(function(file) {
+		return file.path.match(new RegExp('.' + extension + '$'));
+	});
+};
 
+var cdnConfig = {
+	defaultCDNBase: "//my.cdn.host/base",
+	allowRev: true,
+	allowMin: true,
+	files: [
+	"cdnjs:angular.js",
+	"cdnjs:angular.js:angular-animate.js",
+	"cdnjs:angular-ui-bootstrap",
+	"cdnjs:angular-translate",
+	"cdnjs:angular-translate-loader-static-files",
+	{
+		file : '/bower_components/angular-ui-router/release/angular-ui-router.js',
+		cdn : '//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js'
+	},
+	{
+		file : '/bower_components/oclazyload/dist/oclazyload.js',
+		cdn : '//cdnjs.cloudflare.com/ajax/libs/oclazyload/1.1.0/ocLazyLoad.min.js'
+	},
+	{
+		file : '/bower_components/normalize-css/normalize.css',
+		cdn : '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css'
+	},
+	{
+		file : '/bower_components/bootstrap/dist/css/bootstrap.css',
+		cdn : "//cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	}
+
+	]
+};
 // 默认
-gulp.task('default',['clean','images','fonts','after:portal','modules']);
+gulp.task('default',['images','fonts','modules','after:portal']);
 
 // 清除
 gulp.task('clean',function(cb){
@@ -31,12 +69,14 @@ gulp.task('portal', function(cb){
 		css : [minify(),replace('/public/images','/images')],
 		js : [uglify()]
 	}))
+	.pipe(cdn(cdnConfig))
 	.pipe(replace(/\.\.\/modules\/(\w*?)\/(\w*?\.(js|css))/g,'./$3/$2')) // 修改引用模块内的css和js
 	.pipe(replace(/\/tpl\/(\w*)\/(\w*)(?="|')/g,'./tpl/$2.html'))
 	.pipe(replace('../public/stylesheets','./css'))
 	.pipe(replace('../public/javascripts','./js'))
 	.pipe(gulp.dest('./dist'))
 	cb();
+
 });
 gulp.task('debug', function(cb){
 	gulp.src('./public/javascripts/debug.js')
@@ -47,6 +87,15 @@ gulp.task('debug', function(cb){
 gulp.task('after:portal',['debug','portal'], function(cb){
 	gulp.src(['./dist/js/debug.js', './dist/js/app.js'])
 	.pipe(concat('app.js'))
+	.pipe(rename('app.js'))
+	.pipe(gulp.dest('./dist/js'));
+	cb();
+})
+
+gulp.task('app', function(cb){
+	gulp.src(['./dist/js/debug.js', './dist/js/app.js'])
+	.pipe(concat('app.js'))
+	.pipe(rename('a.js'))
 	.pipe(gulp.dest('./dist/js'));
 	cb();
 })
@@ -63,20 +112,38 @@ gulp.task('images', function(cb){
 	gulp.src('./public/images/*.*')
 	.pipe(gulp.dest('./dist/images/'));
 
+	// 网站图标
 	gulp.src('./favicon.ico')
 	.pipe(gulp.dest('./dist/'));
 	cb();
 })
 
-// 通用JS
-// gulp.task('public', function(){
-// 	gulp.src('./public/javascripts/*.js')
-// 	// 匹配形如	: ../modules/dirname/filename.js  或者	: ../modules/dirname/filename.css
-// 	// 替换成		: ./js/filename.js 或者		: ./css/filname.css
-// 	.pipe(concat('app.js'))
-// 	.pipe(replace(/\.\.\/modules\/(.*)\/(.*?\.(js|css))/g,'./$3/$2'))
+// // 通用JS
+// gulp.task('bower', function(){
+// 	var jsFilter = filterByExtension('js'),
+// 	cssFilter = filterByExtension('css');
+// 	gulp.src(mainBowerFiles(),{base: './bower_components'})
+// 	.pipe(rename({dirname:''}))
+// 	.pipe(gulp.dest('./dist/libs'))
+// 	.pipe(rename({suffix: '.min'}))
+// 	.pipe(cssFilter)
+// 	.pipe(minify())
+// 	.pipe(gulp.dest('./dist/libs'))
+// 	.pipe(jsFilter)
 // 	.pipe(uglify())
-// 	.pipe(gulp.dest('./dist/js/'))
+// 	.pipe(gulp.dest('./dist/libs'));
+// });
+	// gulp.src([
+	// 	'bower_components/angular/angular.min.js',
+	// 	'bower_components/angular/angular.min.js',
+	// 	'bower_components/angular-animate/angular-animate.min.js',
+	// 	])
+	// // 匹配形如	: ../modules/dirname/filename.js  或者	: ../modules/dirname/filename.css
+	// // 替换成		: ./js/filename.js 或者		: ./css/filname.css
+	// .pipe(concat('app.js'))
+	// .pipe(replace(/\.\.\/modules\/(.*)\/(.*?\.(js|css))/g,'./$3/$2'))
+	// .pipe(uglify())
+	// .pipe(gulp.dest('./dist/js/'))
 // })
 
 // 各个模块

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "bowerInstall": "bower install",
-    "init": "npm install; npm install bower -g; npm run bowerInstall;",
+    "init": "npm install; npm install bower -g; npm run bowerInstall;cd api; npm install;cd ../",
     "start": "./node_modules/supervisor/lib/cli-wrapper.js ./bin/www"
   },
   "dependencies": {
@@ -20,7 +20,9 @@
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-cdnizer": "^1.1.7",
     "gulp-concat": "^2.6.1",
+    "gulp-filter": "^5.0.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-pug": "^3.3.0",
@@ -29,6 +31,7 @@
     "gulp-rev": "^8.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-usemin": "^0.3.28",
+    "main-bower-files": "^2.13.1",
     "supervisor": "^0.12.0"
   }
 }

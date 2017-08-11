@@ -94,14 +94,15 @@ var app = angular.module('plcent',[
 
     })
 
-    // 电影详情
+    // 关于我
     .state('aboutme',{
         name:'aboutme',
         url:'/aboutme',
         views : {
             'main' : {
+                templateUrl: '/tpl/aboutme/about',
                 controller: 'aboutmeController',
-                templateUrl: '/tpl/aboutme/about'
+                controllerAs : 'vm'
             }
         },
         resolve: {

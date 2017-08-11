@@ -1,9 +1,20 @@
-app.controller('indexCtrl', ['$rootScope','$scope', function($rootScope,$scope){
+app.controller('indexCtrl', ['$rootScope','$scope','$interval', function($rootScope,$scope, $interval){
 	var imgs = [
+	'https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg?2',
+	'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/34.jpg?2',
+	'https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/29.jpg?2',
+	'https://ss1.bdstatic.com/lvoZeXSm1A5BphGlnYG/skin/12.jpg?2',
+	'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/122.jpg?2',
+	'https://ss3.bdstatic.com/iPoZeXSm1A5BphGlnYG/skin/38.jpg?2',
+	'https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/177.jpg?2',
+	'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/451.jpg?2',
 	'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg',
-	'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
-	'https://ss3.bdstatic.com/iPoZeXSm1A5BphGlnYG/skin/406.jpg?2',
-	'https://unsplash.it/g/1200/601',
+	// 'https://ss3.bdstatic.com/iPoZeXSm1A5BphGlnYG/skin/406.jpg?2',
+	'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/skin/183.jpg?2',
+	'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/74.jpg?2',
+	'https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/541.jpg?2',
+	'https://ss3.bdstatic.com/iPoZeXSm1A5BphGlnYG/skin/30.jpg?2'
+
 	];
 	var words = {
 		'zh-cn':[
@@ -27,14 +38,22 @@ app.controller('indexCtrl', ['$rootScope','$scope', function($rootScope,$scope){
 			"Smile and silence are two powerful tools. Smile is the way to solve many problems and silence is the way to avoid many problems."
 		]
 	}
-	$scope.bgImg = imgs[Math.round(Math.random()*10)%imgs.length];
+
 	
-	$scope.randomWords = Math.round(Math.random()*10)%words[$rootScope.lang].length;
+	$scope.randomWords = Math.round(Math.random()*100)%words[$rootScope.lang].length;
 
 	$scope.words = words[$rootScope.lang][$scope.randomWords];
 	$rootScope.$watch('lang', function(newVal, oldVal){
-		if(newVal !== undefined){
+		if(newVal !== void 0){
 			$scope.words = words[newVal][$scope.randomWords];
 		}
 	})
+
+	var setBackground = function(){
+		$scope.bgImg = imgs[Math.round(Math.random()*100)%imgs.length];
+	}
+
+	setBackground();
+
+	$interval(setBackground, 6000);
 }]);

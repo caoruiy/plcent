@@ -1,7 +1,7 @@
 // 豆瓣API
 app.service('douban',['http','isDebug', function(http,isDebug){
 	// 豆瓣电影API地址
-	var apiBaseUrl = isDebug ? "http://localhost:3000/v2/movie/" : "https://api.douban.com/v2/movie/";
+	var apiBaseUrl = isDebug ? "http://localhost:3000/v2/movie/" : "http://localhost:4000/v2/movie/";
 	/**
 	 * 正在上映的电影
 	 * @param  {int} currentPage  当前页码

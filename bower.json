@@ -19,10 +19,19 @@
     "angular": "1.6",
     "angular-ui-router": "^1.0.5",
     "angular-bootstrap": "^2.5.0",
+    "angular-ui-bootstrap": "^2.5.0",
     "normalize-css": "^7.0.0",
     "oclazyload": "ocLazyLoad#^1.1.0",
     "angular-translate": "^2.15.2",
     "angular-translate-loader-static-files": "^2.15.2",
     "angular-animate": "^1.6.5"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": "dist/css/bootstrap.css"
+    },
+    "angular-ui-bootstrap":{
+      "ignore" : true
+    }
   }
 }

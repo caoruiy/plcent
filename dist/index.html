@@ -10,7 +10,9 @@
     <meta name="keywords" content="个人导航,导航,信息,汇集,平台,豆瓣">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta rel="icon" href="../public/images/www.plcent.com_logo_100x100-192x192.png" sizes="32x32">
-    <meta rel="icon" href="../public/images/www.plcent.com_logo_100x100-192x192.png" sizes="192x192"><link rel="stylesheet" href="./css/public.css"/>
+    <meta rel="icon" href="../public/images/www.plcent.com_logo_100x100-192x192.png" sizes="192x192">
+    <script>function cdnizerLoad(u) {document.write('<scr'+'ipt src="'+encodeURIComponent(u)+'"></scr'+'ipt>');}</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="./css/public.css"/>
   </head>
   <body ng-controller="mainCtrl">
     <div class="container-fluid">
@@ -31,11 +33,17 @@
         <loading></loading>
       </div>
       <div class="site-footer-wrapper row">
-        <div class="site-footer col-lg-8 col-md-8 col-sm-12 col-sx-12 col-lg-offset-2 col-md-offset-2">
+        <div class="site-footer col-lg-8 col-md-8 col-sm-12 col-sx-12 col-lg-offset-2 col-md-offset-2 site-footer">
           <p> <span class="site-owner" translate="caoruiy's personal site"></span>&nbsp;&nbsp;<a href="mailto:caoruiy@plcent.com">@caoruiy@plcent.com</a>|&nbsp;&nbsp;<span translate="Language"></span>&nbsp;:&nbsp;&nbsp;<span class="language" ng-click="changeLanguage('zh-cn')" ng-class="  {'active':locLanguage=='zh-cn'}">中文</span>&nbsp;&nbsp;<span class="language" ng-click="changeLanguage('en-us')" ng-class="  {'active':locLanguage=='en-us'}">English  </span></p>
         </div>
       </div>
-    </div><script src="./js/public.js"></script><script src="./js/app.js"></script>
-<script src="./js/public.js"></script><script src="./js/app.js"></script>
+    </div>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script><script>if(!(window.angular)) cdnizerLoad("/bower_components/angular/angular.js");</script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.2/angular-translate.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.15.2/angular-translate-loader-static-files.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/oclazyload/1.1.0/ocLazyLoad.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.js"></script><script>if(!(window.angular)) cdnizerLoad("/bower_components/angular-animate/angular-animate.js");</script><script src="./js/app.js"></script>
   </body>
 </html>
