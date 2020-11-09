@@ -52,10 +52,24 @@
 > npm run init
 
 2. 起服务
-> npm start
+> npm run start
 
 3.访问
 > [http://localhost:3000](http://localhost:3000)
 
 
 4. 服务器上，只需要把 `dist` 目录设置成站点根目录即可
+
+### 电影API服务-暂不使用
+
+1. 启动API
+> cd ./projectDir/api
+
+
+2. 起服务
+> npm run start
+
+3. 访问
+服务启动在4000端口
+> [http://localhost:4000](http://localhost:4000)
+

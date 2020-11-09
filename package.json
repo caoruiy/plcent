@@ -1,10 +1,10 @@
 {
   "name": "www.plcent.com",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "bowerInstall": "bower install",
-    "init": "npm install; npm install bower -g; npm run bowerInstall;cd api; npm install;cd ../",
+    "init": "npm install && npm install bower -g && npm run bowerInstall && cd api && npm install && cd ../",
     "start": "./node_modules/supervisor/lib/cli-wrapper.js ./bin/www"
   },
   "dependencies": {
